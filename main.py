@@ -153,7 +153,7 @@ def navigateStartGameMenu():
     logging.debug('-----Looking for SKIP Button-----')
     
     while True:
-        pos = pyautogui.locateCenterOnScreen(imPath('skip_button.png', region=GAME_REGION))
+        pos = pyautogui.locateCenterOnScreen(imPath('skip_button.png'), region=GAME_REGION)
         
         if pos is not None:
             break
@@ -166,4 +166,14 @@ def navigateStartGameMenu():
     pyautogui.click(pos, duration=0.25)
     logging.debug('CONTINUE Button Pressed')
         
-        
+def startServing():
+    global LAST_GAME_OVER_CHECK, INVENTORY, ORDERING_COMPLETE, LEVEL
+    
+    oldOrders = {}
+    backOrders = {}
+    remakeOrders = {}
+    remakeTimes = {}
+    LAST_GAME_OVER_CHECK = time.time()
+    
+    ORDERING_COMPLETE = {SHRIMP : None, RICE : None, NORI : None,
+                         ROE : None, SALMON : None, UNAGI : None}
