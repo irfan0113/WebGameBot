@@ -131,3 +131,39 @@ def setupCoordinates():
     NORMAL_DELIVERY_BUTTON_COORDS = (GAME_REGION[0] + 495, GAME_REGION[1] + 293)
     MAT_COORDS = (GAME_REGION[0] + 190, GAME_REGION[1] + 375)
     LEVEL = 1
+    
+def navigateStartGameMenu():
+    
+    logging.debug('-----Looking for PLAY button----')
+    
+    while True:
+        pos = pyautogui.locateCenterOnScreen(imPath('play_button.png'), region = GAME_REGION)
+        
+        if pos is not None:
+            break
+        
+    pyautogui.click(pos, duration=0.25)
+    logging.debug('PLAY Button Pressed')
+    
+    logging.debug('-----Looking for CONTINUE Button-----')
+    pos = pyautogui.locateCenterOnScreen(imPath('continue_button.png'), region=GAME_REGION)
+    pyautogui.click(pos, duration=0.25)
+    logging.debug('CONTINUE Button Pressed')
+    
+    logging.debug('-----Looking for SKIP Button-----')
+    
+    while True:
+        pos = pyautogui.locateCenterOnScreen(imPath('skip_button.png', region=GAME_REGION))
+        
+        if pos is not None:
+            break
+        
+    pyautogui.click(pos, duration=0.25)
+    logging.debug('SKIP Button Pressed')
+    
+    logging.debug('-----Looking for CONTINUE Button-----')
+    pos = pyautogui.locateCenterOnScreen(imPath('continue_button.png'), region=GAME_REGION)
+    pyautogui.click(pos, duration=0.25)
+    logging.debug('CONTINUE Button Pressed')
+        
+        
