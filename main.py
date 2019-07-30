@@ -177,3 +177,20 @@ def startServing():
     
     ORDERING_COMPLETE = {SHRIMP : None, RICE : None, NORI : None,
                          ROE : None, SALMON : None, UNAGI : None}
+    
+    while True:
+        currentOrders = getOrders()
+        added, removed = getOrdersDifference(currentOrders, oldOrders)
+        
+        if added != {}:
+            logging.debug('New orders : %s' %list(added.values()))
+            
+            for k in added:
+                remakeTimes[k] = time.time() + TIME_TO_REMAKE
+        
+        if removed != {}:
+            logging.debug('Removed orders: %s' %list(removed.values()))
+            
+            for k in removed:
+                del remakeTimes[k]
+
