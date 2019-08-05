@@ -200,4 +200,15 @@ def startServing():
                 remakeOrders[k] = currentOrders[k]
                 logging.debug('%s added to remake orders. '%(currentOrders[k]))
                 
+        for pos, order in added.items():
+            result = makeOrder(order)
+            if result is not None:
+                orderIngredient(result)
+                backOrders[pos] = order
+                logging.debug('Ingredients for %s not available. !!'%(order))
+                
+        if random.randint(1,10) == 1 or time.time() - PLATE_CLEARING_FREQ > LAST_PLATE_CLEARING:
+            clickOnPlates()
         
+                
+                
