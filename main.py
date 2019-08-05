@@ -193,4 +193,11 @@ def startServing():
             
             for k in removed:
                 del remakeTimes[k]
-
+                
+        for k, remakeTime in copy.copy(remakeTimes).items() :
+            if time.time() > remakeTime:
+                remakeTimes[k] = time.time() + TIME_TO_REMAKE
+                remakeOrders[k] = currentOrders[k]
+                logging.debug('%s added to remake orders. '%(currentOrders[k]))
+                
+        
