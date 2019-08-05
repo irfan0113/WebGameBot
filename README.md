@@ -1,1 +1,1 @@
-# WebGameBot
+This project is on pause for now. Will complete soon.
